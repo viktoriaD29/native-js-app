@@ -1,0 +1,20 @@
+{
+  "name": "js-course",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "author": "Viktoriia Dodychenko",
+  "license": "ISC",
+  "dependencies": {
+    "core-js": "^3.36.0",
+    "parcel": "^2.11.0",
+    "regenerator-runtime": "^0.14.1"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.11.0"
+  }
+}
