@@ -21,14 +21,11 @@ const controlRecipes = async function () {
     //rendering recipe
     recipeView.render(modal.state.recipe);
   } catch (err) {
-    alert(err);
+    recipeView.renderError();
   }
 };
-controlRecipes();
 
-//this is a way to hang several events on the same element
-['hashchange', 'load'].forEach(ev =>
-  window.addEventListener(ev, controlRecipes)
-);
-// window.addEventListener('hashchange', controlRecipes);
-// window.addEventListener('load', controlRecipes);
+const init = function () {
+  recipeView.addHandlerRender(controlRecipes);
+};
+init();
