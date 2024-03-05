@@ -57,9 +57,18 @@ const controlPagination = function (goToPage) {
   paginationView.render(modal.state.search);
 };
 
+const controlServings = function (newServings) {
+  //update the recipe servings (in state)
+  modal.updateServings(newServings);
+
+  //update the recipe view
+  recipeView.render(modal.state.recipe);
+};
+
 //additional function that helps to catch the event in view part and process the event in controller part
 const init = function () {
   recipeView.addHandlerRender(controlRecipes);
+  recipeView.addHandlerUpdateServings(controlServings);
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);
 };
