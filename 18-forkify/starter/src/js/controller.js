@@ -2,6 +2,7 @@ import * as modal from './model.js';
 import recipeView from './views/recipeView.js';
 import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
+import paginationView from './views/paginationView.js';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
@@ -39,14 +40,27 @@ const controlSearchResults = async function () {
     await modal.loadSearchResults(query);
 
     //render results
-    resultsView.render(modal.state.search.results);
+    resultsView.render(modal.getSearchResultsPage());
+
+    //render initial pagination buttons
+    paginationView.render(modal.state.search);
   } catch (err) {
     console.log(err);
   }
 };
 
+const controlPagination = function (goToPage) {
+  //render NEW results
+  resultsView.render(modal.getSearchResultsPage(goToPage));
+
+  //render NEW pagination buttons
+  paginationView.render(modal.state.search);
+};
+
+//additional function that helps to catch the event in view part and process the event in controller part
 const init = function () {
   recipeView.addHandlerRender(controlRecipes);
   searchView.addHandlerSearch(controlSearchResults);
+  paginationView.addHandlerClick(controlPagination);
 };
 init();
