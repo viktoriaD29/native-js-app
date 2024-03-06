@@ -21,7 +21,6 @@ const controlRecipes = async function () {
 
     //update results view to mark selected search result
     resultsView.update(modal.getSearchResultsPage());
-    bookmarksView.update(modal.state.bookmarks);
 
     //when I use the async/efawaiteit function and when I need the result of the promise execution, and not the promise itself (because here loadRecipe function returns a promise), then I can put the await keyword before calling this function. this pauses code execution until the promise executes, so I get the result of the executed promise, not the promise itself. this method allows you not to use then()
     //loading recipe
@@ -29,6 +28,9 @@ const controlRecipes = async function () {
 
     //rendering recipe
     recipeView.render(modal.state.recipe);
+
+    //update bookmarks view
+    bookmarksView.update(modal.state.bookmarks);
   } catch (err) {
     recipeView.renderError();
   }
@@ -86,6 +88,10 @@ const controlAddBookmark = function () {
   bookmarksView.render(modal.state.bookmarks);
 };
 
+const controlBookmarks = function () {
+  bookmarksView.render(modal.state.bookmarks);
+};
+
 //additional function that helps to catch the event in view part and process the event in controller part
 const init = function () {
   recipeView.addHandlerRender(controlRecipes);
@@ -93,5 +99,6 @@ const init = function () {
   recipeView.addHandlerAddBookmark(controlAddBookmark);
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);
+  bookmarksView.addHandlerRender(controlBookmarks);
 };
 init();
