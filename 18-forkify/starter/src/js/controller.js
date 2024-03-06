@@ -18,7 +18,11 @@ const controlRecipes = async function () {
 
     recipeView.renderSpinner();
 
+    //update results view to mark selected search result
+    resultsView.update(modal.getSearchResultsPage());
+
     //when I use the async/efawaiteit function and when I need the result of the promise execution, and not the promise itself (because here loadRecipe function returns a promise), then I can put the await keyword before calling this function. this pauses code execution until the promise executes, so I get the result of the executed promise, not the promise itself. this method allows you not to use then()
+    //loading recipe
     await modal.loadRecipe(id);
 
     //rendering recipe
@@ -62,7 +66,7 @@ const controlServings = function (newServings) {
   modal.updateServings(newServings);
 
   //update the recipe view
-  recipeView.render(modal.state.recipe);
+  recipeView.update(modal.state.recipe);
 };
 
 //additional function that helps to catch the event in view part and process the event in controller part
