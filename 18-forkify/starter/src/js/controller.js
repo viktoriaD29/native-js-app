@@ -4,6 +4,8 @@ import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
 import paginationView from './views/paginationView.js';
 import bookmarksView from './views/bookmarksView.js';
+import addRecipeView from './views/addRecipeView.js';
+
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
@@ -92,6 +94,12 @@ const controlBookmarks = function () {
   bookmarksView.render(modal.state.bookmarks);
 };
 
+const controlAddRecipe = function (newRecipe) {
+  console.log(newRecipe);
+
+  //upload new recipe data
+};
+
 //additional function that helps to catch the event in view part and process the event in controller part
 const init = function () {
   recipeView.addHandlerRender(controlRecipes);
@@ -100,5 +108,6 @@ const init = function () {
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);
   bookmarksView.addHandlerRender(controlBookmarks);
+  addRecipeView.addHandlerUpload(controlAddRecipe);
 };
 init();
